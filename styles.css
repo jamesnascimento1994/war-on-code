@@ -1,0 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body {
+    background-color: #93E5AB;
+    color: #EBF2FA;
+}
+
+button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #28a745;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 10px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+h1 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #93E5AB;
+}
+
+h3 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+p {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+}
+
+#code {
+    min-width: 400px;
+    min-height: 200px;
+    border-radius: 4px;
+    padding: .5rem;
+    margin-top: .5rem;
+}
+
+#tests {
+    border: 1px solid #A5BE00;
+    border-radius: 4px;
+}
+
+label {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#content {
+    background-color: #2D3A3A;
+    margin: 3rem auto 3rem auto;
+    max-width: 400px;
+    border: 1px solid #1A1D1A;
+    border-radius: 4px;
+    padding: 2rem;
+}
