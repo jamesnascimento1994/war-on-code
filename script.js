@@ -1,108 +1,66 @@
+let testIndex = 0;
 const challenges = [
 	{
-		"difficulty": 'easiest',
-		"starterCode": `
-        function minus(a, b) {
-            // your code here
-        }`,
-		"solution": `
-            function minus(a, b) {
-            return a - b;
-        }`,
-		"test": `
+		difficulty: 'easiest',
+		starterCode: `function minus(a, b) {
+        your code here
+   }
+ // INSTRUCTIONS: create a function that takes two parameters and subtracts them from one another
+ // code challenge taken from edabit.com`,
+		test: `
         testOutput(minus(250, 200), 50);
-        testOutput(minus(345, 45), 300);
         `,
 	},
 	{
-		"difficulty": 'easy',
-		"starterCode": `function howManySeconds(hours) {
-            // your code here
-        }`,
-		"solution": `function howManySeconds(hours) {
-            let seconds = hours * 3600;
-            return seconds;
-        }`,
-		"test": `
-        testOutput(howManySeconds(5), 18,000);
-        testOutput(howManySeconds(10), 36,000);
+		difficulty: 'easy',
+		starterCode: `function howManySeconds(hours) {
+        // your code here
+    }
+    // INSTRUCTIONS: create a function that converts hours into second
+    // code challenge taken from edabit.com`,
+		test: `
+        testOutput(howManySeconds(5), 18000);
         `,
 	},
 	{
-		"difficulty": 'medium',
-		"starterCode": `function nextEdge(side1, side2) {
-            // your code here
-        }`,
-		"solution": `function nextEdge(side1, side2) {
-            let side3 = (side1 + side2) - 1;
-            return side3;
-        }`,
-		"test": `
-        testOutput(nextEdge(3, 6), 9);
-        testOutput(nextEdge(7, 5), 12);   
+		difficulty: 'medium',
+		starterCode: `function nextEdge(side1, side2) {
+        // your code here
+    }
+    // INSTRUCTIONS: create a function that finds the maximum range of a triangle's third edge, where the side lengths are all integers
+    // code challenge taken from edabit.com`,
+		test: `
+        testOutput(nextEdge(3, 6), 8); 
         `,
 	},
 	{
-		"difficulty": 'hard',
-		"starterCode": `function sakuraFall(v) {
-            // your code here
-        }`,
-		"solution": `function sakuraFall(v) {
-            let speed = v;
-            let distanceFell = 400;
-            if (speed > 0) {
-                let howManySeconds = distanceFell / speed;
-                return howManySeconds;
-            } else {
-                return 0;
-            }
-        }`,
-		"test": `
+		difficulty: 'hard',
+		starterCode: `function sakuraFall(v) {
+        // your code here
+    }
+    // INSTRUCTIONS: When it's spring Japanese cherries blossom, it's called "sakura" and it's admired a lot. The petals start to fall in late April.
+    // Suppose that the falling speed of a petal is 5 centimeters per second (5 cm/s), and it takes 80 seconds for the petal to reach the ground from a certain branch.
+    // Write a function that receives the speed (in cm/s) of a petal as input, and returns the time it takes for that petal to reach the ground from the same branch.
+    // NOTE: If the initial velocity is a negative integer, the return value should be 0.
+    // code challenge taken from codewars.com`,
+		test: `
         testOutput(sakuraFall(8), 50);
-        testOutput(sakuraFall(16), 25);
         `,
 	},
 	{
-		"difficulty": 'hardest',
-		"starterCode": `function maskify(cc) {
-            // your code here
-        }
-        // HINT: you're going to have to create one other function that reverses a string`,
-		"solution": `function maskify(cc) {
-            if (cc.length > 4) {
-                let reversedCC = reverse(cc);
-                let newString = '';
-                for (let i = 0; i < reversedCC.length; i++) {
-                    if (i < 4) {
-                        newString += reversedCC[i];
-                    } else {
-                        newString += '#';
-                    }
-                }
-                    return reverse(newString);
-                } else {
-                    return cc;
-            }
-        }
-        function reverse(str) {
-            return str.split("").reverse().join();
-        }`,
-		"test": `
-        testOutput(maskify("2"), "2");
-        testOutput(maskify("467985"), "##7985");
+		difficulty: 'hardest',
+		starterCode: `function maskify(cc) {
+        // your code here
+    }
+// INSTRUCTIONS: create a function that masks credit card numbers by changing all but the last four characters into '#'
+// HINT: you're going to have to create one other function that reverses a string
+// code challenge taken from codewars.com`,
+		test: `
+        testOutput(maskify("46873487498"), "#######7498");
         `,
 	},
 ];
 
-const initialCode = `
-function adder(a, b) {
-    return a + b;
-}
-`;
-const testDefs = `
-testOutput(adder(100, 23), 123);
-testOutput(adder(23, 45), 68)
-`;
 window.evaluateIt = () => {
 	const codeInput = document.getElementById('code');
 
@@ -114,22 +72,25 @@ window.evaluateIt = () => {
             should have been $\{expected} \`);
         } else {
             alert("Correct!");
+            testIndex = testIndex + 1;
+            console.log(testIndex);
+            const testDisplay = document.getElementById('tests');
+    const codeInput = document.getElementById('code');
+            codeInput.value = challenges[testIndex].starterCode;
+		testDisplay.innerHTML = challenges[testIndex].test;
         }
     }
-    ${challenges.test}
-    `;
+    ${challenges[testIndex].test}`;
 	eval(concatenated);
 };
 
 function main() {
 	const testDisplay = document.getElementById('tests');
     const codeInput = document.getElementById('code');
-    for (let i = 0; i < challenges.length; i++) {
-		codeInput.value = challenges[i].starterCode;
-		testDisplay.innerHTML = challenges[i].test;
-        console.log(challenges[i].starterCode);
-        console.log(challenges[i].test)
-    }
+    let difficulty = document.querySelector('.difficulty');
+	codeInput.value = challenges[testIndex].starterCode;
+    testDisplay.innerHTML = challenges[testIndex].test;
+    difficulty.innerHTML = challenges[testIndex].difficulty;
 }
 
 main();
