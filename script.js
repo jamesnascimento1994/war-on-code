@@ -1,9 +1,24 @@
+const codeInput = document.getElementById('code');
+const testDisplay = document.getElementById('tests');
 let testIndex = 0;
+let difficulty = document.querySelector('.difficulty');
+// let submitButton = document.querySelector('button');
+let nextChallengeButton = document.querySelector('.next-challenge');
+nextChallengeButton.addEventListener('click', theNextChallenge);
+function theNextChallenge() {
+    testIndex = testIndex + 1;
+    codeInput.value = challenges[testIndex].starterCode;
+	testDisplay.innerHTML = challenges[testIndex].test;
+	difficulty.innerHTML = challenges[testIndex].difficulty;
+    nextChallengeButton.style.display = 'none';
+    console.log(testIndex);
+    document.querySelector('button').innerText = 'Submit';
+}
 const challenges = [
 	{
 		difficulty: 'easiest',
 		starterCode: `function minus(a, b) {
-        your code here
+       // your code here
    }
  // INSTRUCTIONS: create a function that takes two parameters and subtracts them from one another
  // code challenge taken from edabit.com`,
@@ -62,22 +77,16 @@ const challenges = [
 ];
 
 window.evaluateIt = () => {
-	const codeInput = document.getElementById('code');
-
 	const concatenated = `${codeInput.value}
     
     function testOutput(actual, expected) {
         if (actual !== expected) {
-            alert(\`NOPE! $\{actual\}
-            should have been $\{expected} \`);
+            document.getElementById('tests').innerText = (\`The result returned is $\{actual\}
+            should have been $\{expected\} \`);
         } else {
-            alert("Correct!");
-            testIndex = testIndex + 1;
-            console.log(testIndex);
-            const testDisplay = document.getElementById('tests');
-    const codeInput = document.getElementById('code');
-            codeInput.value = challenges[testIndex].starterCode;
-		testDisplay.innerHTML = challenges[testIndex].test;
+            document.getElementById('tests').innerText = (\` $\{expected\} \`)
+            document.querySelector('button').innerText = 'Correct!';
+            nextChallengeButton.style.display = 'block';
         }
     }
     ${challenges[testIndex].test}`;
@@ -85,9 +94,6 @@ window.evaluateIt = () => {
 };
 
 function main() {
-	const testDisplay = document.getElementById('tests');
-    const codeInput = document.getElementById('code');
-    let difficulty = document.querySelector('.difficulty');
 	codeInput.value = challenges[testIndex].starterCode;
     testDisplay.innerHTML = challenges[testIndex].test;
     difficulty.innerHTML = challenges[testIndex].difficulty;

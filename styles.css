@@ -21,6 +21,10 @@ button {
     font-family: 'Langar', sans-serif;
 }
 
+.next-challenge {
+    display: none;
+}
+
 h1 {
     font-family: 'Langar', sans-serif;
     color: saddlebrown;
