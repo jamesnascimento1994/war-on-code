@@ -1,27 +1,38 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Langar');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower');
 body {
     background-color: brown;
     color: #EBF2FA;
 }
 
+.difficulty {
+    font-family: 'Indie Flower', sans-serif;
+}
+
 button {
-    display: inline-block;
     border-radius: 4px;
     background-color: aqua;
     border: none;
-    color: #FFFFFF;
+    color: black;
     text-align: center;
     font-size: 28px;
     padding: 10px;
     width: 150px;
     transition: all 0.5s;
     cursor: pointer;
-    margin: 5px;
+    margin-bottom: 5px;
+    margin-left: 125px;
     font-family: 'Langar', sans-serif;
 }
 
 .next-challenge {
+    display: none;
+    font-size: 15px;
+    color: black;
+}
+
+.try-again {
     display: none;
 }
 
@@ -63,4 +74,8 @@ label {
     border: 1px solid #1A1D1A;
     border-radius: 4px;
     padding: 2rem;
+}
+
+.reset {
+    display: none;
 }

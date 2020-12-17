@@ -1,33 +1,48 @@
 const codeInput = document.getElementById('code');
 const testDisplay = document.getElementById('tests');
-let testIndex = 0;
+let index = 0;
 let difficulty = document.querySelector('.difficulty');
-// let submitButton = document.querySelector('button');
+let tryAgainButton = document.querySelector('.try-again');
+tryAgainButton.addEventListener('click', tryAgain);
+let resetButton = document.querySelector('.reset');
+resetButton.addEventListener('click', reset)
 let nextChallengeButton = document.querySelector('.next-challenge');
 nextChallengeButton.addEventListener('click', theNextChallenge);
 function theNextChallenge() {
-    testIndex = testIndex + 1;
-    codeInput.value = challenges[testIndex].starterCode;
-	testDisplay.innerHTML = challenges[testIndex].test;
-	difficulty.innerHTML = challenges[testIndex].difficulty;
-    nextChallengeButton.style.display = 'none';
-    console.log(testIndex);
-    document.querySelector('button').innerText = 'Submit';
+	index = index + 1;
+	codeInput.value = challenges[index].starterCode;
+	testDisplay.innerHTML = challenges[index].test;
+	difficulty.innerHTML = challenges[index].difficulty;
+	nextChallengeButton.style.display = 'none';
+	document.querySelector('button').innerText = 'Submit';
 }
+
+function tryAgain() {
+	codeInput.value = challenges[index].starterCode;
+	testDisplay.innerHTML = challenges[index].test;
+	difficulty.innerHTML = challenges[index].difficulty;
+	tryAgainButton.style.display = 'none';
+	document.querySelector('button').style.display = 'block';
+}
+
+function reset(e) {
+   e.preventDefault();
+   document.location.href = "";
+}
+
 const challenges = [
 	{
-		difficulty: 'easiest',
+		difficulty: 'So easy, a caveman could do it!',
 		starterCode: `function minus(a, b) {
        // your code here
    }
  // INSTRUCTIONS: create a function that takes two parameters and subtracts them from one another
  // code challenge taken from edabit.com`,
 		test: `
-        testOutput(minus(250, 200), 50);
-        `,
+        testOutput(minus(250, 200), 50);`,
 	},
 	{
-		difficulty: 'easy',
+		difficulty: "Easy, but I'm not sure a caveman could do it!",
 		starterCode: `function howManySeconds(hours) {
         // your code here
     }
@@ -38,7 +53,7 @@ const challenges = [
         `,
 	},
 	{
-		difficulty: 'medium',
+		difficulty: 'Casual',
 		starterCode: `function nextEdge(side1, side2) {
         // your code here
     }
@@ -49,7 +64,7 @@ const challenges = [
         `,
 	},
 	{
-		difficulty: 'hard',
+		difficulty: 'Hardcore',
 		starterCode: `function sakuraFall(v) {
         // your code here
     }
@@ -63,7 +78,7 @@ const challenges = [
         `,
 	},
 	{
-		difficulty: 'hardest',
+		difficulty: 'Insane',
 		starterCode: `function maskify(cc) {
         // your code here
     }
@@ -83,20 +98,26 @@ window.evaluateIt = () => {
         if (actual !== expected) {
             document.getElementById('tests').innerText = (\`The result returned is $\{actual\}
             should have been $\{expected\} \`);
-        } else {
+            tryAgainButton.style.display = 'block';
+            document.querySelector('button').style.display = 'none';
+        } else if (index == 4) {
+            document.querySelector('button').innerText = 'Correct!';
+            nextChallengeButton.style.display = 'none';
+            resetButton.style.display = 'block';
+        }
+        else {
             document.getElementById('tests').innerText = (\` $\{expected\} \`)
             document.querySelector('button').innerText = 'Correct!';
             nextChallengeButton.style.display = 'block';
         }
     }
-    ${challenges[testIndex].test}`;
+    ${challenges[index].test}`;
 	eval(concatenated);
 };
 
 function main() {
-	codeInput.value = challenges[testIndex].starterCode;
-    testDisplay.innerHTML = challenges[testIndex].test;
-    difficulty.innerHTML = challenges[testIndex].difficulty;
+	codeInput.value = challenges[index].starterCode;
+	difficulty.innerHTML = challenges[index].difficulty;
+	testDisplay.innerHTML = challenges[index].test;
 }
-
 main();
