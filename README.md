@@ -44,4 +44,4 @@ HTML, CSS, JavaScript
 
 Deployed with Netlify
 
-https://hungry-almeida-77d4b0.netlify.app/
+https://war-on-code.netlify.app/
